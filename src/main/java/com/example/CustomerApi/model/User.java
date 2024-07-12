@@ -12,11 +12,11 @@ import lombok.Data;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String firstName;
     private String lastName;
-    private int age;
-    private int idNo;
+    private Integer age;
+    private Integer idNo;
     private String email;
 
 }
