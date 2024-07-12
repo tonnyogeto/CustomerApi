@@ -13,21 +13,25 @@ import java.util.stream.Collectors;
 public class UserService {
     @Autowired
     UserRepository userRepository;
+//
+//    public List<UserLocationDTO> getUserLocation() {
+//        return userRepository.findAll().stream().map(this::convertEntityToDto).collect(Collectors.toList());
+//    }
+//
+//    public UserLocationDTO convertEntityToDto(User user){
+//        UserLocationDTO userLocationDTO =new UserLocationDTO();
+//        userLocationDTO.setFirstName(user.getFirstName());
+//        userLocationDTO.setLastName(user.getLastName());
+//        userLocationDTO.setAge(user.getAge());
+//        userLocationDTO.setCountry(user.getLocation().getCountry());
+//        userLocationDTO.setTown(user.getLocation().getTown());
+//
+//        return userLocationDTO;
+//
+//    }
 
-    public List<UserLocationDTO> getUserLocation() {
-        return userRepository.findAll().stream().map(this::convertEntityToDto).collect(Collectors.toList());
-    }
-
-    public UserLocationDTO convertEntityToDto(User user){
-        UserLocationDTO userLocationDTO =new UserLocationDTO();
-        userLocationDTO.setFirstName(user.getFirstName());
-        userLocationDTO.setLastName(user.getLastName());
-        userLocationDTO.setAge(user.getAge());
-        userLocationDTO.setCountry(user.getLocation().getCountry());
-        userLocationDTO.setTown(user.getLocation().getTown());
-
-        return userLocationDTO;
-
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }
 
