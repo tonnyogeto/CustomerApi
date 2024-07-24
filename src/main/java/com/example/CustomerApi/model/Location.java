@@ -1,19 +1,33 @@
 package com.example.CustomerApi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "user_locations")
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "country")
     private String country;
+
+    @Column(name = "county")
     private String county;
+
+    @Column(name = "town")
     private String town;
+
+    @Column(name = "postal_address")
     private String postalAddress;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

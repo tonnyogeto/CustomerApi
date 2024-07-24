@@ -1,22 +1,33 @@
 package com.example.CustomerApi.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer id;
+
+    @Column(name="f_name")
     private String firstName;
+
+    @Column(name="l_name")
     private String lastName;
+
+    @Column(name="age")
     private Integer age;
-    private Integer idNo;
+
+    @Column(name ="id_no")
+    private String idNo;
+
+    @Column(name="email")
     private String email;
 
 }

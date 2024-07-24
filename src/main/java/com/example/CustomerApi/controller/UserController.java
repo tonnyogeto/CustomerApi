@@ -1,30 +1,33 @@
 package com.example.CustomerApi.controller;
 
-import com.example.CustomerApi.dto.UserLocationDTO;
-import com.example.CustomerApi.model.User;
+import com.example.CustomerApi.dto.UserCreationDto;
+import com.example.CustomerApi.dto.UserFetchDto;
 import com.example.CustomerApi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("customer")
+@RequestMapping("/api")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-//    @GetMapping("details")
-//    public List<UserLocationDTO> getUserLocation(){
-//        return userService.getUserLocation();
-//
-//    }
+    @PostMapping("/users")
+    public ResponseEntity<?> createUser(
+            @RequestBody UserCreationDto dto
+    ) {
+        userService.createUser(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Success");
+    }
+
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers(){
-        return userService.getAllUsers();
+    public ResponseEntity<?> getAllUsers() {
+       List<UserFetchDto> users= userService.getAllUsers();
+        return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 }
