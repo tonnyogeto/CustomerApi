@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -38,6 +39,14 @@ public class UserService {
             dtos.add(dto);
         }
         return dtos;
+    }
+
+    public  UserFetchDto getUserById(Integer userId){
+       Optional<User> userOptional = userRepository.findById(userId);
+       if(userOptional.isPresent()){
+           User user = userOptional.get();
+
+       }
     }
 
     private static UserFetchDto convertToDto(User u) {
