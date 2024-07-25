@@ -32,8 +32,10 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}")
-    public UserFetchDto getUserById(
+    public ResponseEntity<?> getUserById(
             @PathVariable("userId") Integer userId
     ) {
+        UserFetchDto dto = userService.getUserById(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(dto);
     }
 }

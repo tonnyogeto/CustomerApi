@@ -33,7 +33,7 @@ public class UserService {
     public List<UserFetchDto> getAllUsers() {
         List<User> allUsers = userRepository.findAll();
 
-        List<UserFetchDto> dtos =new ArrayList<>();
+        List<UserFetchDto> dtos = new ArrayList<>();
         for (User u : allUsers) {
             UserFetchDto dto = convertToDto(u);
             dtos.add(dto);
@@ -41,12 +41,14 @@ public class UserService {
         return dtos;
     }
 
-    public  UserFetchDto getUserById(Integer userId){
-       Optional<User> userOptional = userRepository.findById(userId);
-       if(userOptional.isPresent()){
-           User user = userOptional.get();
+    public UserFetchDto getUserById(Integer userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return convertToDto(user);
+        }
+        return null;
 
-       }
     }
 
     private static UserFetchDto convertToDto(User u) {
