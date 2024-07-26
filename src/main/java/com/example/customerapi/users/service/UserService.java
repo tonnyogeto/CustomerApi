@@ -1,13 +1,11 @@
-package com.example.CustomerApi.service;
+package com.example.customerapi.users.service;
 
-import com.example.CustomerApi.dto.UserCreationDto;
-import com.example.CustomerApi.dto.UserFetchDto;
-import com.example.CustomerApi.model.User;
-import com.example.CustomerApi.repository.UserRepository;
+import com.example.customerapi.users.dto.UserCreationDto;
+import com.example.customerapi.users.dto.UserFetchDto;
+import com.example.customerapi.users.model.User;
+import com.example.customerapi.users.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,14 +39,35 @@ public class UserService {
         return dtos;
     }
 
-    public UserFetchDto getUserById(Integer userId) {
+    public User getUserByIdOrElseReturnNull(Integer userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
-            User user = userOptional.get();
+            return userOptional.get();
+        }
+        return null;
+    }
+
+
+    public UserFetchDto getUserById(Integer userId) {
+        User user = getUserByIdOrElseReturnNull(userId);
+        if (user != null) {
             return convertToDto(user);
         }
         return null;
+    }
 
+
+    public void updateUser(UserCreationDto dto, Integer userId) {
+        User user = getUserByIdOrElseReturnNull(userId);
+        if (user == null) {
+            return;
+        }
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setAge(dto.getAge());
+        user.setEmail(dto.getEmail());
+        user.setIdNo(dto.getIdNo());
+        userRepository.save(user);
     }
 
     private static UserFetchDto convertToDto(User u) {
@@ -60,6 +79,14 @@ public class UserService {
         dto.setIdNo(u.getIdNo());
         dto.setId(u.getId());
         return dto;
+    }
+
+    public void deleteUserById(Integer userId) {
+        User user = getUserByIdOrElseReturnNull(userId);
+        if (user == null) {
+            return;
+        }
+        userRepository.delete(user);
     }
 }
 

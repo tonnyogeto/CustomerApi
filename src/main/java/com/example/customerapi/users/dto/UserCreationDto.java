@@ -1,8 +1,6 @@
-package com.example.CustomerApi.dto;
+package com.example.customerapi.users.dto;
 
 
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
 @Data

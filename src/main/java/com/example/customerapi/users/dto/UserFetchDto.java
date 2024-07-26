@@ -1,4 +1,4 @@
-package com.example.CustomerApi.dto;
+package com.example.customerapi.users.dto;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.example.CustomerApi;
+package com.example.customerapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

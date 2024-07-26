@@ -1,6 +1,6 @@
-package com.example.CustomerApi.repository;
+package com.example.customerapi.locations.repository;
 
-import com.example.CustomerApi.model.Location;
+import com.example.customerapi.locations.model.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

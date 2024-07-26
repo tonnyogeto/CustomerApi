@@ -1,6 +1,6 @@
-package com.example.CustomerApi.repository;
+package com.example.customerapi.users.repository;
 
-import com.example.CustomerApi.model.User;
+import com.example.customerapi.users.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

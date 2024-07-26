@@ -1,5 +1,6 @@
-package com.example.CustomerApi.model;
+package com.example.customerapi.locations.model;
 
+import com.example.customerapi.users.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package com.example.CustomerApi.model;
+package com.example.customerapi.users.model;
 
 
 import jakarta.persistence.*;
