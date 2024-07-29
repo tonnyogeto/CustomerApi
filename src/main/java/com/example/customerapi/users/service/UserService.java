@@ -39,26 +39,24 @@ public class UserService {
         return dtos;
     }
 
-    public User getUserByIdOrElseReturnNull(Integer userId) {
+    public User getUserByIdOrElseThrow(Integer userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isPresent()) {
             return userOptional.get();
+        } else {
+            throw new RuntimeException(String.format("User with id %d not found", userId));
         }
-        return null;
     }
 
 
     public UserFetchDto getUserById(Integer userId) {
-        User user = getUserByIdOrElseReturnNull(userId);
-        if (user != null) {
-            return convertToDto(user);
-        }
-        return null;
+        User user = getUserByIdOrElseThrow(userId);
+        return convertToDto(user);
     }
 
 
     public void updateUser(UserCreationDto dto, Integer userId) {
-        User user = getUserByIdOrElseReturnNull(userId);
+        User user = getUserByIdOrElseThrow(userId);
         if (user == null) {
             return;
         }
@@ -82,10 +80,7 @@ public class UserService {
     }
 
     public void deleteUserById(Integer userId) {
-        User user = getUserByIdOrElseReturnNull(userId);
-        if (user == null) {
-            return;
-        }
+        User user = getUserByIdOrElseThrow(userId);
         userRepository.delete(user);
     }
 }

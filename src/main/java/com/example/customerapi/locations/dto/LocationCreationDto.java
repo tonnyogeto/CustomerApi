@@ -9,6 +9,5 @@ public class LocationCreationDto {
     private String county;
     private String town;
     private String postalAddress;
-    private User user;
-
+    private Integer userId;
 }
