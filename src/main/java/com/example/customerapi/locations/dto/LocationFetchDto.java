@@ -1,5 +1,6 @@
 package com.example.customerapi.locations.dto;
 
+import com.example.customerapi.users.dto.UserFetchDto;
 import com.example.customerapi.users.model.User;
 import lombok.Data;
 
@@ -9,5 +10,5 @@ public class LocationFetchDto {
     private String county;
     private String town;
     private String postalAddress;
-    private User user;
+    private UserFetchDto user;
 }

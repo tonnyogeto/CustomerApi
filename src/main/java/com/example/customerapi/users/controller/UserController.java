@@ -17,6 +17,12 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @GetMapping
+    public ResponseEntity<?> getAllUsers() {
+        List<UserFetchDto> users= userService.getAllUsers();
+        return ResponseEntity.status(HttpStatus.OK).body(users);
+    }
+
     @PostMapping
     public ResponseEntity<?> createUser(
             @RequestBody UserCreationDto dto
@@ -25,13 +31,8 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body("Success");
     }
 
-    @GetMapping
-    public ResponseEntity<?> getAllUsers() {
-       List<UserFetchDto> users= userService.getAllUsers();
-        return ResponseEntity.status(HttpStatus.OK).body(users);
-    }
 
-    @GetMapping("/users/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<?> getUserById(
             @PathVariable("userId") Integer userId
     ) {

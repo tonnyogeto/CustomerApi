@@ -68,7 +68,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    private static UserFetchDto convertToDto(User u) {
+    public static UserFetchDto convertToDto(User u) {
         UserFetchDto dto = new UserFetchDto();
         dto.setFirstName(u.getFirstName());
         dto.setLastName(u.getLastName());
