@@ -17,6 +17,17 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
+    public List<UserFetchDto> getAllUsers() {
+        List<User> allUsers = userRepository.findAll();
+
+        List<UserFetchDto> dtos = new ArrayList<>();
+        for (User u : allUsers) {
+            UserFetchDto dto = convertToDto(u);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+
     @Transactional
     public void createUser(UserCreationDto dto) {
         User user = new User();
@@ -28,16 +39,7 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public List<UserFetchDto> getAllUsers() {
-        List<User> allUsers = userRepository.findAll();
 
-        List<UserFetchDto> dtos = new ArrayList<>();
-        for (User u : allUsers) {
-            UserFetchDto dto = convertToDto(u);
-            dtos.add(dto);
-        }
-        return dtos;
-    }
 
     public User getUserByIdOrElseThrow(Integer userId) {
         Optional<User> userOptional = userRepository.findById(userId);
